@@ -29,6 +29,7 @@ body {
   position: absolute;
   top: var(--hamburg-margin);
   left: var(--hamburg-margin);
+
   z-index: 2;
   cursor: pointer;
 }
@@ -58,6 +59,13 @@ body {
   width: 0;
 }
 
+.hamburger-menu:has(input:focus-visible)::before,
+.hamburger-menu:has(input:focus-visible)::after,
+.hamburger-menu input:focus-visible {
+  border: 1px solid var(--background);
+  box-shadow: 0 0 0 1px var(--foreground);
+}
+
 .hamburger-menu::before,
 .hamburger-menu::after,
 .hamburger-menu input {
@@ -72,6 +80,20 @@ body {
     background-color var(--animation-timing);
 }
 
+.sidebar {
+  transition: translate var(--animation-timing);
+  translate: -100%;
+
+  padding-top: calc(var(--hamburger-height) +var(--hamburg-margin) + 16px);
+  background-color: #e8e7e7;
+  color: var(--background);
+  max-width: 90vw;
+  min-height: 70vh;
+}
+
+.hamburger-menu:has(input:checked) + .sidebar {
+  translate: 0;
+}
 .sidebar ul {
   list-style: none;
 }
