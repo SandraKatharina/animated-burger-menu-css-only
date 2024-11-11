@@ -14,13 +14,20 @@ body {
   --hamburger-gap: 6px;
   --foreground: #333;
   --background: white;
+  --hamburg-margin: 8px;
+  --animation-timing: 200ms ease-in-out;
 }
 
 .hamburger-menu {
   display: flex;
   flex-direction: column;
   gap: var(--hamburger-gap);
-  border-radius: 9999px;
+  width: max-content;
+  position: absolute;
+  top: var(--hamburg-margin);
+  left: var(--hamburg-margin);
+  z-index: 2;
+  cursor: pointer;
 }
 
 .hamburger-menu input {
@@ -31,6 +38,14 @@ body {
   pointer-events: none;
 }
 
+.hamburger-menu:has(input:checked)::before {
+}
+
+.hamburger-menu input:checked {
+  opacity: 0;
+  width: 0;
+}
+
 .hamburger-menu::before,
 .hamburger-menu::after,
 .hamburger-menu input {
@@ -38,4 +53,10 @@ body {
   width: var(--bar-width);
   height: var(--bar-hight);
   background-color: var(--foreground);
+  border-radius: 9999px;
+  transition: opacity var(--animation-timing), width var(--animation-timing);
+}
+
+.sidebar ul {
+  list-style: none;
 }
